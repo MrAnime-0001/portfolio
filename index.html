@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yutti Chylong — IT Developer & Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & VARIABLES ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #07070f;
+  --bg2: #0d0d1a;
+  --surface: #11111e;
+  --surface2: #18182a;
+  --border: rgba(110, 100, 255, 0.1);
+  --border-bright: rgba(110, 100, 255, 0.28);
+  --accent: #6366f1;
+  --accent2: #a855f7;
+  --teal: #22d3ee;
+  --glow: rgba(99, 102, 241, 0.18);
+  --text: #e4e4f0;
+  --text-dim: #8888aa;
+  --text-muted: #44445a;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --gradient: linear-gradient(135deg, #6366f1, #a855f7);
+  --gradient-text: linear-gradient(135deg, #818cf8 20%, #d946ef 100%);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(7, 7, 15, 0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-weight: 800; font-size: 1.15rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 2.25rem; list-style: none; }
+.nav-links a { font-size: 13.5px; color: var(--text-dim); font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active { color: #818cf8; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('Photoes/36065-10235-16605-54939-28997.webp') center/cover no-repeat;
+  filter: brightness(0.28) saturate(0.7);
+  transform: scale(1.04);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(7,7,15,0.3) 0%, rgba(7,7,15,0.6) 50%, var(--bg) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  text-align: center; padding: 2rem;
+  max-width: 820px;
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  padding: 6px 18px; border-radius: 100px; margin-bottom: 1.75rem;
+}
+.hero-name {
+  font-size: clamp(3.2rem, 9vw, 6rem); font-weight: 800; line-height: 0.95;
+  margin-bottom: 0.6rem; letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 25%, #c084fc 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-title {
+  font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--text-dim);
+  font-weight: 300; margin-bottom: 2.5rem; letter-spacing: 0.01em;
+}
+.hero-title strong { color: var(--teal); font-weight: 600; }
+.hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: 13px 30px;
+  background: var(--gradient); color: white;
+  border-radius: 9px; font-weight: 600; font-size: 15px;
+  transition: all 0.22s; box-shadow: 0 0 28px var(--glow);
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(99,102,241,0.4); }
+.btn-outline {
+  padding: 13px 30px; background: transparent; color: var(--text);
+  border: 1px solid var(--border-bright); border-radius: 9px;
+  font-weight: 500; font-size: 15px; transition: all 0.22s; cursor: pointer;
+}
+.btn-outline:hover { background: var(--surface); border-color: #818cf8; color: #818cf8; }
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--text-muted); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  animation: scrollBounce 2.5s ease-in-out infinite;
+}
+.hero-scroll::after {
+  content: ''; width: 1px; height: 44px;
+  background: linear-gradient(to bottom, rgba(130,130,200,0.5), transparent);
+}
+
+/* ===== SECTION SHARED ===== */
+section { padding: 5.5rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.s-label {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.26em;
+  text-transform: uppercase; color: #818cf8; margin-bottom: 0.7rem;
+}
+.s-title {
+  font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 0.9rem;
+}
+.s-title span {
+  background: var(--gradient-text);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.s-sub { font-size: 1.05rem; color: var(--text-dim); max-width: 560px; margin-bottom: 3rem; line-height: 1.75; }
+.bar { width: 44px; height: 3px; background: var(--gradient); border-radius: 2px; margin-bottom: 1rem; }
+
+/* ===== ABOUT ===== */
+.about-grid {
+  display: grid; grid-template-columns: 360px 1fr;
+  gap: 4.5rem; align-items: center;
+}
+.photo-wrap { position: relative; }
+.about-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center;
+  border-radius: 18px; border: 1px solid var(--border-bright);
+}
+.photo-glow {
+  position: absolute; inset: -3px; border-radius: 21px;
+  background: var(--gradient); z-index: -1; opacity: 0.35; filter: blur(22px);
+}
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1.5rem; }
+.stat-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem; text-align: center;
+}
+.stat-num {
+  font-size: 1.9rem; font-weight: 700;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+}
+.stat-lbl { font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+.about-body p { color: var(--text-dim); margin-bottom: 1.1rem; font-size: 1.03rem; line-height: 1.82; }
+.about-body p strong { color: var(--text); font-weight: 600; }
+.hl { display: inline; background: rgba(99,102,241,0.1); padding: 1px 7px; border-radius: 4px; color: #a5b4fc; }
+
+/* ===== JOURNEY ===== */
+#journey { background: var(--bg2); }
+.timeline { position: relative; padding-left: 1.75rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, #6366f1, #a855f7 60%, transparent);
+  border-radius: 2px;
+}
+.tl-item {
+  position: relative; padding-bottom: 3rem; padding-left: 2rem;
+  opacity: 0; transform: translateX(-18px); transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+.tl-dot {
+  position: absolute; left: -2.45rem; top: 5px;
+  width: 15px; height: 15px;
+  background: var(--gradient); border-radius: 50%;
+  border: 2px solid var(--bg2); box-shadow: 0 0 14px rgba(99,102,241,0.5);
+}
+.tl-period {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #818cf8; margin-bottom: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.tl-heading { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.tl-body { color: var(--text-dim); font-size: 0.95rem; line-height: 1.72; max-width: 700px; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.85rem; }
+.tag {
+  font-size: 10.5px; font-weight: 500; padding: 3px 10px; border-radius: 100px;
+  border: 1px solid; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em;
+}
+.tl { color: #818cf8; border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.07); }
+.tf { color: #34d399; border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+.tt { color: #fbbf24; border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.07); }
+.tc { color: #c084fc; border-color: rgba(192,132,252,0.3); background: rgba(192,132,252,0.07); }
+
+/* ===== SKILLS ===== */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.skill-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 13px; padding: 1.5rem; transition: all 0.22s;
+}
+.skill-card:hover { border-color: var(--border-bright); transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,0.35); }
+.sk-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+.sk-title { font-size: 13.5px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.9rem; }
+.sk-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.sk-list li { font-size: 13px; color: var(--text-dim); display: flex; align-items: center; gap: 9px; }
+.sk-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #6366f1; flex-shrink: 0; }
+
+/* ===== PROJECTS ===== */
+#projects { background: var(--bg2); }
+.featured {
+  background: var(--surface); border: 1px solid var(--border-bright);
+  border-radius: 18px; padding: 2.75rem; margin-bottom: 2rem;
+  position: relative; overflow: hidden;
+}
+.featured::before {
+  content: 'FEATURED PROJECT';
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em;
+  color: #818cf8; background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(99,102,241,0.28);
+  padding: 4px 12px; border-radius: 100px;
+}
+.featured::after {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(99,102,241,0.07), transparent 65%);
+  pointer-events: none;
+}
+.proj-badge {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.55rem;
+}
+.proj-title { font-size: 1.7rem; font-weight: 700; margin-bottom: 1rem; }
+.proj-desc { color: var(--text-dim); font-size: 1rem; line-height: 1.75; margin-bottom: 1.6rem; max-width: 680px; }
+.proj-features {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 8px; margin-bottom: 1.6rem; max-width: 620px;
+}
+.proj-feat {
+  font-size: 13px; color: var(--text-dim);
+  display: flex; align-items: flex-start; gap: 9px; line-height: 1.5;
+}
+.proj-feat::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.proj-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.6rem; }
+.chip {
+  font-size: 11.5px; font-family: 'JetBrains Mono', monospace;
+  padding: 4px 11px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 5px; color: var(--text-dim);
+}
+.proj-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; background: var(--gradient);
+  color: white; border-radius: 9px; font-size: 14px; font-weight: 600;
+  transition: all 0.22s; box-shadow: 0 0 22px var(--glow);
+}
+.proj-link:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(99,102,241,0.38); }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.proj-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 13px; padding: 1.5rem; transition: all 0.22s;
+  display: flex; flex-direction: column;
+}
+.proj-card:hover { border-color: var(--border-bright); transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,0.3); }
+.pc-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.pc-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.pc-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; flex: 1; margin-bottom: 1.1rem; }
+.pc-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+.mini { font-size: 10px; font-family: 'JetBrains Mono', monospace; padding: 2px 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; color: var(--text-muted); }
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 300px 300px;
+  gap: 1rem;
+}
+.gal-item {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border); position: relative;
+  transition: all 0.3s; cursor: zoom-in;
+}
+.gal-item:hover { border-color: var(--border-bright); transform: scale(1.02); box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 2; }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.gal-item:hover img { transform: scale(1.06); }
+.gal-item.tall { grid-row: span 2; }
+.gal-item.wide { grid-column: span 2; }
+.gal-cap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+  font-size: 12px; color: rgba(255,255,255,0.82);
+  opacity: 0; transition: opacity 0.3s;
+}
+.gal-item:hover .gal-cap { opacity: 1; }
+
+/* ===== CV ===== */
+.cv-wrap { text-align: center; }
+.cv-wrap .s-sub { margin: 0 auto 2.5rem; }
+.cv-card {
+  background: var(--surface); border: 1px solid var(--border-bright);
+  border-radius: 18px; padding: 3rem; max-width: 580px;
+  margin: 0 auto; position: relative; overflow: hidden;
+}
+.cv-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top, rgba(99,102,241,0.07), transparent 60%);
+  pointer-events: none;
+}
+.cv-email {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px; color: var(--text-dim); margin-bottom: 2rem;
+  padding: 10px 22px; background: var(--bg2); border: 1px solid var(--border); border-radius: 9px;
+}
+.cv-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 2rem; text-align: center; color: var(--text-muted); font-size: 13px;
+}
+footer strong {
+  background: var(--gradient-text);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-weight: 700;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .photo-wrap { max-width: 300px; margin: 0 auto; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-features { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 260px 260px; }
+  .gal-item.tall { grid-row: span 1; }
+  .gal-item.wide { grid-column: span 2; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+}
+@media (max-width: 620px) {
+  section { padding: 4rem 1.25rem; }
+  .nav-links { display: none; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gal-item { height: 240px; }
+  .gal-item.tall, .gal-item.wide { grid-row: auto; grid-column: auto; }
+  .featured { padding: 1.75rem; }
+  .featured::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="main-nav">
+  <div class="nav-logo">YC.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#cv">CV</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Recent IT Graduate · New Zealand</div>
+    <h1 class="hero-name">Yutti Chylong</h1>
+    <p class="hero-title">
+      A recent IT graduate with a passion for building — <strong>web apps, games, and data tools</strong>.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="Yutti Vong Chylong CV 2026.docx" download class="btn-outline">Download CV</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid fade-in">
+      <div class="photo-wrap">
+        <img class="about-img" src="Photoes/image0.jpg" alt="Yutti Chylong">
+        <div class="photo-glow"></div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-num">5</div>
+            <div class="stat-lbl">Yrs Study</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">8</div>
+            <div class="stat-lbl">Projects</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">7</div>
+            <div class="stat-lbl">Languages</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-body">
+        <div class="s-label">About Me</div>
+        <h2 class="s-title">Just graduated and <span>ready to go</span></h2>
+        <div class="bar"></div>
+        <p>I'm <strong>Yutti Chylong</strong>, a recently graduated IT student from New Zealand. Over five years of study I worked across a range of areas — from <span class="hl">C# and OOP fundamentals</span> to <span class="hl">ASP.NET Core web development</span>, Unity game dev, and data analysis with R and SQL Server.</p>
+        <p>Most of what I know comes from actually making stuff — I built my course projects end-to-end rather than just following tutorials. I picked up patterns like Repository, Dependency Injection, and MVC by using them in real assignments. I'm still early in my career but I pick things up fast and I don't mind jumping into something I haven't seen before.</p>
+        <p>Outside of study I'm a big gamer. I recently built a <strong>deck advisor tool</strong> for Slay the Spire 2 as a personal project — just something I wanted to exist and figured I could make myself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCHOOL JOURNEY ===== -->
+<section id="journey">
+  <div class="container">
+    <div class="fade-in">
+      <div class="s-label">Academic Timeline</div>
+      <h2 class="s-title">My <span>School Journey</span></h2>
+      <div class="bar"></div>
+      <p class="s-sub">Five years of IT, a ton of projects, and way too many late nights — here's how it went.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2020 – 2021</div>
+        <div class="tl-heading">Programming Fundamentals — C# &amp; OOP</div>
+        <div class="tl-body">
+          Started with C# as my first language. Tackled searching and sorting algorithms (sequential search, binary search, bubble sort, quicksort) measuring real runtime with <code>Stopwatch</code> and Big O analysis. Dived into Object-Oriented Programming — classes, inheritance, polymorphism, encapsulation, extension methods. Built the <strong>PolytechLibrary</strong> system modelling books, teachers, and students using real inheritance hierarchies. First steps into Windows Forms GUI with event-driven programming.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tl">C#</span>
+          <span class="tag tc">OOP</span>
+          <span class="tag tc">Algorithms</span>
+          <span class="tag tf">Windows Forms</span>
+          <span class="tag tc">Big O</span>
+          <span class="tag tc">Collections</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2021 – 2022</div>
+        <div class="tl-heading">Desktop Applications &amp; Advanced C#</div>
+        <div class="tl-body">
+          Built full end-to-end desktop applications. The <strong>Car Inventory Manager</strong> had a Car object model, GST calculation, file I/O for saving and loading, and a Windows Forms UI. The <strong>Employee Database App</strong> stepped things up with full CRUD, persistent file storage via StreamReader/StreamWriter, a dedicated <code>FileErrorHandler</code> class, and clean separation of concerns across multiple classes. This was where software architecture really clicked.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tl">C#</span>
+          <span class="tag tf">.NET 6</span>
+          <span class="tag tc">CRUD</span>
+          <span class="tag tc">File I/O</span>
+          <span class="tag tc">Exception Handling</span>
+          <span class="tag tc">Separation of Concerns</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2022 – 2023</div>
+        <div class="tl-heading">Digital Ethics, HCI &amp; Web Foundations</div>
+        <div class="tl-body">
+          Completed Digital Ethics — covering privacy, data security, intellectual property, and professional responsibilities in IT. Studied Human-Computer Interaction in depth: user-centred design, prototyping, usability testing, and research methods for understanding real user needs. HCI changed how I think about building software — the experience matters just as much as the functionality. Laid the foundations in web development: HTML5, CSS, JavaScript, jQuery, and Bootstrap 5.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tl">HTML5</span>
+          <span class="tag tl">CSS</span>
+          <span class="tag tl">JavaScript</span>
+          <span class="tag tf">Bootstrap 5</span>
+          <span class="tag tc">HCI &amp; UX</span>
+          <span class="tag tc">Digital Ethics</span>
+          <span class="tag tc">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2023 – 2024</div>
+        <div class="tl-heading">Full-Stack Web Dev, Unity Game Dev &amp; Data Analysis</div>
+        <div class="tl-body">
+          The big leap. Built <strong>OtakuLibrary</strong> — a manga catalogue app using ASP.NET Core MVC with a repository pattern, dependency injection, and Razor Views. Then built <strong>MangaStore</strong> — a full e-commerce platform with ASP.NET Core Identity auth, admin panel, session-based shopping cart, product search, genre filtering, and dynamic sorting. Simultaneously learned R for data analysis, running full pipelines on CardioGoodFitness and WHO COVID-19 datasets with ggplot2 visualisations, correlation analysis, and dummy variables. Built <strong>Zombie Defense</strong> in Unity: 4 zombie types, game state management, physics collision, coroutines, and audio integration.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tf">ASP.NET Core MVC</span>
+          <span class="tag tf">Entity Framework Core</span>
+          <span class="tag tf">ASP.NET Core Identity</span>
+          <span class="tag tl">R</span>
+          <span class="tag tf">Unity</span>
+          <span class="tag tt">SQL Server</span>
+          <span class="tag tc">Repository Pattern</span>
+          <span class="tag tc">Dependency Injection</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2024</div>
+        <div class="tl-heading">Gym Store E-Commerce &amp; Business Intelligence Capstone</div>
+        <div class="tl-body">
+          Built <strong>Gym Store</strong> — my most complete end-to-end project. Full e-commerce for gym supplements with product browsing by category, AJAX cart with session persistence, user registration and login via ASP.NET Core Identity, file upload for product images, order tracking with receipts, and a full BI data layer. Simultaneously completed a Data Mining capstone using SQL Server Analysis Services (SSAS): built OLAP cubes, defined mining structures, tested and validated predictive models, and built predictions. Also completed Data Mining for Business Analytics using R with real business datasets.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tf">ASP.NET Core</span>
+          <span class="tag tl">SQL</span>
+          <span class="tag tt">SSAS</span>
+          <span class="tag tc">OLAP</span>
+          <span class="tag tc">AJAX</span>
+          <span class="tag tc">Predictive Modelling</span>
+          <span class="tag tc">File Uploads</span>
+          <span class="tag tc">Session Management</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2025</div>
+        <div class="tl-heading">Advanced Web Systems, Intelligent Systems &amp; Project Management</div>
+        <div class="tl-body">
+          Advanced ASP.NET Core covering Razor Pages, Data Annotations, and deeper AJAX integration. Intelligent Web Systems exploring web technologies combined with smarter, data-driven functionality. Technical Project Management covering mobile app planning, agile methodologies, technical documentation, and stakeholder communication. Built the <strong>STS2 Build Advisor</strong> as a personal project — a full deck tracking and advisory tool for Slay the Spire 2 with a 40+ signal scoring algorithm, 147 synergy pairs, 5 characters, and auto-save via localStorage.
+        </div>
+        <div class="tl-tags">
+          <span class="tag tf">Razor Pages</span>
+          <span class="tag tc">Agile</span>
+          <span class="tag tc">Project Management</span>
+          <span class="tag tl">JavaScript</span>
+          <span class="tag tc">localStorage</span>
+          <span class="tag tc">Algorithm Design</span>
+          <span class="tag tc">Intelligent Systems</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-in">
+      <div class="s-label">What I Know</div>
+      <h2 class="s-title">Technical <span>Skills</span></h2>
+      <div class="bar"></div>
+      <p class="s-sub">Skills built through coursework and personal projects across web development, desktop apps, game dev, and data analysis.</p>
+    </div>
+    <div class="skills-grid fade-in">
+
+      <div class="skill-card">
+        <div class="sk-icon">💻</div>
+        <div class="sk-title">Languages</div>
+        <ul class="sk-list">
+          <li>C#</li>
+          <li>HTML5 / CSS</li>
+          <li>CSHTML (Razor)</li>
+          <li>JavaScript / jQuery</li>
+          <li>SQL</li>
+          <li>R</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="sk-icon">🚀</div>
+        <div class="sk-title">Frameworks &amp; Platforms</div>
+        <ul class="sk-list">
+          <li>ASP.NET Core MVC</li>
+          <li>Entity Framework Core</li>
+          <li>ASP.NET Core Identity</li>
+          <li>Razor Pages</li>
+          <li>Windows Forms (.NET 6)</li>
+          <li>Bootstrap 5</li>
+          <li>Unity Engine (C#)</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="sk-icon">🗄️</div>
+        <div class="sk-title">Data &amp; Databases</div>
+        <ul class="sk-list">
+          <li>SQL Server + SSMS</li>
+          <li>Entity Framework Migrations</li>
+          <li>SQL Server Analysis Services</li>
+          <li>OLAP Cube Design</li>
+          <li>R (ggplot2, readr, dummies)</li>
+          <li>Predictive Modelling</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="sk-icon">🏗️</div>
+        <div class="sk-title">Architecture &amp; Patterns</div>
+        <ul class="sk-list">
+          <li>MVC Pattern</li>
+          <li>Repository Pattern</li>
+          <li>Dependency Injection</li>
+          <li>Factory Pattern</li>
+          <li>OOP (Inheritance, Polymorphism)</li>
+          <li>Session Management</li>
+          <li>Authentication &amp; Authorisation</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="sk-icon">🎮</div>
+        <div class="sk-title">Game Dev &amp; UX</div>
+        <ul class="sk-list">
+          <li>Unity Engine + C#</li>
+          <li>Game State Management</li>
+          <li>Physics Collision Detection</li>
+          <li>Coroutines &amp; Audio Systems</li>
+          <li>HCI &amp; User-Centred Design</li>
+          <li>Usability Testing</li>
+          <li>Responsive Web Design</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="sk-icon">🛠️</div>
+        <div class="sk-title">Tools &amp; Workflow</div>
+        <ul class="sk-list">
+          <li>Visual Studio / VS Code</li>
+          <li>SQL Server Management Studio</li>
+          <li>RStudio</li>
+          <li>Unity Editor</li>
+          <li>Git / GitHub</li>
+          <li>AJAX / jQuery</li>
+          <li>Agile / Project Management</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-in">
+      <div class="s-label">What I've Built</div>
+      <h2 class="s-title">Projects</h2>
+      <div class="bar"></div>
+      <p class="s-sub">Academic assignments and personal projects built during my studies — spanning web development, desktop apps, game dev, and data analysis.</p>
+    </div>
+
+    <!-- FEATURED: STS2 -->
+    <div class="featured fade-in">
+      <div class="proj-badge">Personal Project · 2025</div>
+      <h3 class="proj-title">STS2 Build Advisor</h3>
+      <p class="proj-desc">
+        A single-file HTML tool I built for Slay the Spire 2 in my spare time because I wanted it to exist. It tracks your deck in real-time, scores every card pick using a weighted algorithm, and helps identify your build path across a run — covering 5 characters. Built with pure HTML, CSS, and vanilla JavaScript, no backend or frameworks needed.
+      </p>
+      <div class="proj-features">
+        <div class="proj-feat">40+ signal card scoring algorithm with 6-tier verdict system</div>
+        <div class="proj-feat">5 characters with 24 builds and 147 explicit synergy pairs</div>
+        <div class="proj-feat">Engine commitment tracking (3-card engine completion)</div>
+        <div class="proj-feat">Boss matrix — 10 bosses with reward/punish strategies</div>
+        <div class="proj-feat">Auto-save via localStorage with 24-hour session recovery</div>
+        <div class="proj-feat">Real-time archetype detection (20+ archetype tags)</div>
+        <div class="proj-feat">Named loadout save/load system (up to 20 saves)</div>
+        <div class="proj-feat">Responsive 3-column grid layout, no dependencies</div>
+      </div>
+      <div class="proj-tech">
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS Grid</span>
+        <span class="chip">Vanilla JS</span>
+        <span class="chip">localStorage</span>
+        <span class="chip">Algorithm Design</span>
+        <span class="chip">Google Fonts</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="https://mranime-0001.github.io/Spire-Forge/sts2-build-advisor.html" class="proj-link" target="_blank">Open Build Advisor →</a>
+        <a href="https://github.com/MrAnime-0001/Spire-Forge" class="btn-outline" target="_blank" style="display:inline-flex;align-items:center;padding:11px 24px;font-size:14px;font-weight:600;">View on GitHub →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div class="projects-grid fade-in">
+
+      <div class="proj-card">
+        <div class="pc-icon">🏋️</div>
+        <div class="pc-title">Gym Store</div>
+        <div class="pc-desc">Academic e-commerce project for gym supplements built as a final assignment. Includes product browsing by category, a shopping cart with session persistence, user authentication, file uploads for product images, and basic order tracking.</div>
+        <div class="pc-tech">
+          <span class="mini">ASP.NET Core</span>
+          <span class="mini">EF Core</span>
+          <span class="mini">Identity</span>
+          <span class="mini">SQL Server</span>
+          <span class="mini">AJAX</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="pc-icon">📚</div>
+        <div class="pc-title">MangaStore</div>
+        <div class="pc-desc">Academic e-commerce web app for manga. Includes user authentication, a basic admin panel, session-based shopping cart, search, genre filtering, and sorting. Uses repository and factory patterns for data access.</div>
+        <div class="pc-tech">
+          <span class="mini">ASP.NET Core MVC</span>
+          <span class="mini">Repository Pattern</span>
+          <span class="mini">Bootstrap 5</span>
+          <span class="mini">SQL Server</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="pc-icon">🧟</div>
+        <div class="pc-title">Zombie Defense</div>
+        <div class="pc-desc">Game development assignment built in Unity using C#. Features 4 zombie types, a score system, obstacle penalties, a 5-life health system, and a game-over screen. Covered basic game loop, input handling, collision detection, and audio.</div>
+        <div class="pc-tech">
+          <span class="mini">Unity</span>
+          <span class="mini">C#</span>
+          <span class="mini">Coroutines</span>
+          <span class="mini">Physics</span>
+          <span class="mini">Audio</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="pc-icon">📖</div>
+        <div class="pc-title">OtakuLibrary</div>
+        <div class="pc-desc">Manga catalogue web app built as an ASP.NET Core MVC assignment. Uses a repository pattern with an interface, dependency injection, Razor Views, and Bootstrap. My first time applying MVC architecture properly end-to-end.</div>
+        <div class="pc-tech">
+          <span class="mini">ASP.NET Core</span>
+          <span class="mini">Repository Pattern</span>
+          <span class="mini">DI</span>
+          <span class="mini">Razor Views</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="pc-icon">👤</div>
+        <div class="pc-title">Employee Database App</div>
+        <div class="pc-desc">Desktop application assignment in C# .NET 6 with Windows Forms. Covers CRUD operations, file-based data persistence, basic exception handling, and a simple UI. One of my earlier projects where I started learning to separate concerns across classes.</div>
+        <div class="pc-tech">
+          <span class="mini">C#</span>
+          <span class="mini">.NET 6</span>
+          <span class="mini">Windows Forms</span>
+          <span class="mini">File I/O</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="pc-icon">📊</div>
+        <div class="pc-title">Data Mining Capstone</div>
+        <div class="pc-desc">Capstone assignment using SQL Server Analysis Services (SSAS). Built an OLAP cube, defined mining structures, tested predictive models, and worked through the BI pipeline. First time working with business intelligence tooling end-to-end.</div>
+        <div class="pc-tech">
+          <span class="mini">SSAS</span>
+          <span class="mini">SQL Server</span>
+          <span class="mini">OLAP</span>
+          <span class="mini">Predictive Models</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="container">
+    <div class="fade-in">
+      <div class="s-label">School Life</div>
+      <h2 class="s-title">Life Outside <span>The Code</span></h2>
+      <div class="bar"></div>
+      <p class="s-sub">Five years went by fast. Here's some proof it was fun.</p>
+    </div>
+    <div class="gallery-grid fade-in">
+
+      <!-- Tall: classroom smiling — clear, genuine portrait -->
+      <div class="gal-item tall">
+        <img src="Photoes/IMG_20240517_092813_509.jpg" alt="Yutti at school" loading="lazy">
+        <div class="gal-cap">Good times at school</div>
+      </div>
+
+      <!-- Top middle: friends with Luffy hat -->
+      <div class="gal-item">
+        <img src="Photoes/IMG_20240517_092802_122.jpg" alt="Yutti and friends" loading="lazy">
+        <div class="gal-cap">One Piece era — straw hat secured</div>
+      </div>
+
+      <!-- Top right: with friend, cool sunglasses -->
+      <div class="gal-item">
+        <img src="Photoes/66726-85324-31333-60164-97936.jpg" alt="Yutti with a friend" loading="lazy">
+        <div class="gal-cap">Staying cool with the crew</div>
+      </div>
+
+      <!-- Bottom wide: group at Thor's hammer Wellington -->
+      <div class="gal-item wide">
+        <img src="Photoes/IMG_20240517_092815_394.jpg" alt="Wellington — Mjolnir" loading="lazy" style="object-position: center 30%;">
+        <div class="gal-cap">Wellington trip — Mjolnir certified</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CV ===== -->
+<section id="cv">
+  <div class="container cv-wrap">
+    <div class="fade-in">
+      <div class="s-label">Get In Touch</div>
+      <h2 class="s-title">Download My <span>CV</span></h2>
+      <div class="bar" style="margin: 0 auto 1rem;"></div>
+      <p class="s-sub">Interested in working together or want to know more? Grab my CV or send me an email.</p>
+    </div>
+    <div class="cv-card fade-in">
+      <div class="cv-email">yuttichylong@outlook.com</div>
+      <div class="cv-btns">
+        <a href="cv.html" target="_blank" class="btn-primary">View CV</a>
+        <a href="mailto:yuttichylong@outlook.com" class="btn-outline">Send Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Built by <strong>Yutti Chylong</strong> &nbsp;·&nbsp; Recent IT Graduate &nbsp;·&nbsp; New Zealand &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+// Scroll animation — fade-in elements and timeline items
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in, .tl-item').forEach(el => observer.observe(el));
+
+// Stagger timeline items
+document.querySelectorAll('.tl-item').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 80}ms`;
+});
+
+// Active nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const match = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (match) match.classList.add('active');
+    }
+  });
+}, { threshold: 0.35 });
+sections.forEach(s => navObs.observe(s));
+</script>
+</body>
+</html>

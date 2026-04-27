@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yutti Chylong — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== SCREEN STYLES ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #4f46e5;
+  --accent-light: #ede9fe;
+  --text: #111827;
+  --text-dim: #4b5563;
+  --border: #e5e7eb;
+  --bg: #f9fafb;
+}
+body {
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.page-wrap {
+  max-width: 860px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* ===== CV CONTENT ===== */
+.cv {
+  padding: 3rem 3.5rem;
+}
+
+/* Header */
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent);
+  gap: 2rem;
+}
+.cv-name { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.cv-title { font-size: 1rem; color: var(--accent); font-weight: 500; margin-top: 4px; }
+.cv-contact { text-align: right; font-size: 13px; color: var(--text-dim); line-height: 1.8; flex-shrink: 0; }
+.cv-contact a { color: var(--accent); text-decoration: none; }
+
+/* Sections */
+.cv-section { margin-bottom: 1.75rem; }
+.cv-section-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 1rem;
+}
+
+/* Summary */
+.cv-summary { font-size: 14.5px; color: var(--text-dim); line-height: 1.75; }
+
+/* Education */
+.edu-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.edu-qual { font-weight: 600; font-size: 14.5px; }
+.edu-school { font-size: 13.5px; color: var(--text-dim); margin-top: 2px; }
+.edu-year { font-size: 13px; color: var(--text-dim); white-space: nowrap; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+
+/* Skills */
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem 2rem; }
+.skill-group-title { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.skill-items { font-size: 13px; color: var(--text-dim); }
+
+/* Projects */
+.proj-item { margin-bottom: 1.1rem; }
+.proj-item:last-child { margin-bottom: 0; }
+.proj-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 4px; }
+.proj-name { font-weight: 600; font-size: 14.5px; }
+.proj-stack { font-size: 11.5px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+.proj-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; }
+
+/* Other */
+.other-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 2rem; }
+.other-list li { font-size: 13.5px; color: var(--text-dim); display: flex; align-items: flex-start; gap: 8px; }
+.other-list li::before { content: '·'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body { background: white; font-size: 12px; }
+  .page-wrap { box-shadow: none; border-radius: 0; margin: 0; max-width: 100%; }
+  .print-bar { display: none; }
+  .cv { padding: 2rem 2.5rem; }
+  .cv-name { font-size: 1.6rem; }
+  .cv-section { page-break-inside: avoid; }
+}
+
+@media (max-width: 600px) {
+  .cv { padding: 2rem 1.5rem; }
+  .cv-header { flex-direction: column; }
+  .cv-contact { text-align: left; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .other-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <div class="cv">
+
+    <!-- HEADER -->
+    <div class="cv-header">
+      <div>
+        <div class="cv-name">Yutti Chylong</div>
+        <div class="cv-title">Recent IT Graduate</div>
+      </div>
+      <div class="cv-contact">
+        <div><a href="mailto:yuttichylong@outlook.com">yuttichylong@outlook.com</a></div>
+        <div>New Zealand</div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="cv-section">
+      <div class="cv-section-title">Profile</div>
+      <div class="cv-summary">
+        Recent IT graduate with five years of academic study covering web development, object-oriented programming in C#, game development in Unity, and data analysis using R and SQL Server. Comfortable working across the full web stack using ASP.NET Core MVC, Entity Framework, and Bootstrap. Looking for an entry-level developer role where I can continue learning, contribute to a team, and build on the foundation I've developed through study and personal projects.
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="cv-section">
+      <div class="cv-section-title">Education</div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-qual">Bachelor of Information Technology, majoring in Programming</div>
+          <div class="edu-school">WelTec (Wellington Institute of Technology), New Zealand</div>
+        </div>
+        <div class="edu-year">2020 – 2025</div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="cv-section">
+      <div class="cv-section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <div>
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-items">C#, HTML5, CSS, JavaScript, jQuery, SQL, R, CSHTML (Razor)</div>
+        </div>
+        <div>
+          <div class="skill-group-title">Frameworks &amp; Platforms</div>
+          <div class="skill-items">ASP.NET Core MVC, Entity Framework Core, ASP.NET Core Identity, Razor Pages, Windows Forms, Bootstrap 5, Unity (C#)</div>
+        </div>
+        <div>
+          <div class="skill-group-title">Databases &amp; Data</div>
+          <div class="skill-items">SQL Server, Entity Framework Migrations, SQL Server Analysis Services (SSAS), OLAP, R (ggplot2, readr)</div>
+        </div>
+        <div>
+          <div class="skill-group-title">Concepts &amp; Patterns</div>
+          <div class="skill-items">MVC, Repository Pattern, Dependency Injection, OOP, CRUD, Session Management, AJAX, Authentication &amp; Authorisation</div>
+        </div>
+        <div>
+          <div class="skill-group-title">Tools</div>
+          <div class="skill-items">Visual Studio, VS Code, SQL Server Management Studio, RStudio, Unity Editor, Git / GitHub</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="cv-section">
+      <div class="cv-section-title">Projects</div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-name">Gym Store — E-Commerce Web Application</div>
+          <div class="proj-stack">ASP.NET Core · EF Core · SQL Server · Bootstrap</div>
+        </div>
+        <div class="proj-desc">
+          Academic assignment building a working e-commerce site for gym supplements. Includes product browsing by category, a session-based shopping cart, user registration and login via ASP.NET Core Identity, product image uploads, and order tracking. Applied MVC architecture, dependency injection, and data annotations for model validation.
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-name">MangaStore — E-Commerce Platform</div>
+          <div class="proj-stack">ASP.NET Core MVC · Repository Pattern · SQL Server</div>
+        </div>
+        <div class="proj-desc">
+          E-commerce web application for manga built as a university assignment. Includes Identity authentication, an admin panel, a session cart, product search, genre filtering, and sorting. Uses repository and factory patterns for data access.
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-name">STS2 Build Advisor — Personal Project</div>
+          <div class="proj-stack">HTML · CSS · Vanilla JavaScript · localStorage</div>
+        </div>
+        <div class="proj-desc">
+          A single-file deck tracking and advisory tool for Slay the Spire 2, built in my spare time. Uses a scoring algorithm to evaluate card picks based on build fit, synergy pairs, deck composition, and act progression. Includes named save/load, session auto-save, and a responsive layout with no external dependencies.
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-name">Zombie Defense — Unity Game</div>
+          <div class="proj-stack">Unity · C#</div>
+        </div>
+        <div class="proj-desc">
+          Game development assignment in Unity. Features 4 zombie types, a score system, obstacle collision penalties, a 5-life system, and a game-over screen. Covered game loop design, input handling, collision detection, coroutines, and audio integration in C#.
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-name">OtakuLibrary / Employee Database</div>
+          <div class="proj-stack">ASP.NET Core MVC &amp; C# .NET 6</div>
+        </div>
+        <div class="proj-desc">
+          OtakuLibrary: manga catalogue app applying MVC, repository pattern, and dependency injection for the first time. Employee Database: desktop app with full CRUD, file-based persistence, and exception handling — one of my earlier C# projects focusing on separation of concerns.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OTHER KNOWLEDGE -->
+    <div class="cv-section">
+      <div class="cv-section-title">Coursework &amp; Other Skills</div>
+      <ul class="other-list">
+        <li>Human-Computer Interaction (HCI) &amp; UX design principles</li>
+        <li>Digital Ethics — privacy, data security, professional responsibilities</li>
+        <li>Data analysis with R (ggplot2, bivariate/univariate statistics)</li>
+        <li>SQL Server Analysis Services — OLAP cubes &amp; predictive models</li>
+        <li>Agile methodologies &amp; Technical Project Management</li>
+        <li>Responsive web design &amp; Bootstrap 5</li>
+        <li>Git version control &amp; basic workflow</li>
+        <li>Business intelligence pipeline design</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
