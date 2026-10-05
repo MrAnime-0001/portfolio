@@ -1,0 +1,202 @@
+/* ==========================================================
+   Portfolio stylesheet
+   Search for "REQ:" to find each assignment requirement.
+   ========================================================== */
+
+/* ---------- REQ: Font stylisation ----------
+   Two Google Fonts: Lora for headings, Source Sans 3 for body text.
+   Weight, size, line-height and letter-spacing are set below. */
+body {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #222;
+}
+h1, h2, h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; margin-bottom: 20px; }
+h3 { font-size: 1.25rem; margin-bottom: 8px; }
+.small-label {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b4532a;
+  font-weight: 600;
+}
+
+/* ---------- REQ: Background stylisation ----------
+   Body has a warm off-white background colour.
+   The hero uses a background image with a dark overlay.
+   Alternate sections use a second background colour. */
+body {
+  margin: 0;
+  background-color: #faf7f2;
+}
+.hero {
+  background: linear-gradient(rgba(20, 20, 30, 0.65), rgba(20, 20, 30, 0.65)),
+              url('Photoes/36065-10235-16605-54939-28997.webp') center / cover no-repeat;
+  color: white;
+}
+.alt { background-color: #efe9df; }
+
+/* ---------- REQ: Margins (and padding) ----------
+   Sections get space above/below; the content box is centred with
+   margin: 0 auto. */
+section { padding: 70px 20px; }
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+p { margin: 0 0 16px; }
+a { color: #b4532a; }
+
+/* ---------- REQ: Flexbox ----------
+   Used for: the nav bar, the hero text, the about section,
+   the cards (skills / projects), the gallery and the buttons. */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  background: #1f2937;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav a { color: white; text-decoration: none; margin-left: 24px; }
+.nav a:hover { color: #f0b27a; }
+.nav .logo { font-family: 'Lora', serif; font-weight: 700; font-size: 1.2rem; margin: 0; }
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 85vh;
+  padding: 40px 20px;
+}
+.hero p { max-width: 600px; font-size: 1.2rem; }
+
+.about {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- REQ: Width & height ----------
+   Fixed width/height on the profile photo and gallery images,
+   percentages and max-width on cards so they resize. */
+.profile-photo {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.card {
+  width: calc(33.333% - 14px);   /* three per row */
+  min-height: 180px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+}
+.card ul { margin: 0; padding-left: 20px; }
+.gallery img {
+  width: calc(50% - 8px);        /* two per row */
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 2px solid #b4532a;
+  border-radius: 4px;
+  background: #b4532a;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: #8f3f1d; border-color: #8f3f1d; }
+.btn.outline { background: transparent; color: #b4532a; }
+.hero .btn.outline { color: white; border-color: white; }
+.btn.outline:hover { background: #b4532a; color: white; }
+
+/* ---------- Timeline (school journey) ---------- */
+.timeline { border-left: 3px solid #b4532a; padding-left: 24px; }
+.timeline .entry { margin-bottom: 28px; }
+.timeline .year { font-weight: 700; color: #b4532a; }
+
+/* ---------- Contact form ---------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 560px;
+  margin: 0 auto 24px;
+}
+.contact-form label { display: flex; flex-direction: column; font-weight: 600; gap: 4px; }
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  font: inherit;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+.contact-form textarea { height: 120px; }
+.contact-form .btn { align-self: flex-start; }
+
+footer {
+  background: #1f2937;
+  color: #ccc;
+  text-align: center;
+  padding: 24px;
+  font-size: 0.9rem;
+}
+
+/* ---------- REQ: Animations ----------
+   1) @keyframes fadeUp - hero text slides up and fades in on page load.
+   2) transition - cards lift and buttons change colour on hover. */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero > * { animation: fadeUp 0.9s ease both; }
+.hero > h1 { animation-delay: 0.15s; }
+.hero > p  { animation-delay: 0.3s; }
+.hero > .buttons { animation-delay: 0.45s; }
+
+.card { transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15); }
+.btn { transition: background 0.2s, color 0.2s; }
+.gallery img { transition: transform 0.3s; }
+.gallery img:hover { transform: scale(1.03); }
+
+/* ---------- Mobile layout ---------- */
+@media (max-width: 760px) {
+  .about { flex-direction: column; }
+  .card, .gallery img { width: 100%; }
+  .nav { flex-direction: column; gap: 8px; }
+  .nav a { margin: 0 10px; }
+  h1 { font-size: 2.2rem; }
+}
