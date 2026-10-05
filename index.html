@@ -853,7 +853,7 @@ footer strong {
     </div>
     <div class="cv-card fade-in">
       <!-- opens the visitor's email app; swap action for a Formspree URL to send without it -->
-      <form class="contact-form" action="mailto:yuttichylong@outlook.com" method="post" enctype="text/plain">
+      <form class="contact-form" id="contact-form">
         <label>Name <input type="text" name="name" required></label>
         <label>Email <input type="email" name="email" required></label>
         <label>Message <textarea name="message" required></textarea></label>
@@ -882,6 +882,16 @@ document.querySelectorAll('.fade-in, .tl-item').forEach(el => observer.observe(e
 // Stagger timeline items
 document.querySelectorAll('.tl-item').forEach((el, i) => {
   el.style.transitionDelay = `${i * 80}ms`;
+});
+
+// Contact form — builds a readable email in the visitor's mail app
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim(), from = f.email.value.trim(), msg = f.message.value.trim();
+  const subject = `Portfolio message from ${name}`;
+  const body = `Hello Yutti,\n\nMy name is ${name}.\n\n${msg}\n\nReply to: ${from}`;
+  location.href = `mailto:yuttichylong@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 // Active nav highlight
