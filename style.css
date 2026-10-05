@@ -3,6 +3,8 @@
    Search for "REQ:" to find each assignment requirement.
    ========================================================== */
 
+* { box-sizing: border-box; }
+
 /* ---------- REQ: Font stylisation ----------
    Two Google Fonts: Lora for headings, Source Sans 3 for body text.
    Weight, size, line-height and letter-spacing are set below. */
@@ -17,8 +19,9 @@ h1, h2, h3 {
   font-weight: 700;
   line-height: 1.2;
 }
-h1 { font-size: 3rem; }
-h2 { font-size: 2rem; margin-bottom: 20px; }
+h1 { font-size: 4.2rem; margin: 0 0 16px; }
+h2 { font-size: 2.2rem; margin: 4px 0 28px; }
+h2::after { content: ''; display: block; width: 50px; height: 4px; background: #b4532a; margin-top: 12px; border-radius: 2px; }
 h3 { font-size: 1.25rem; margin-bottom: 8px; }
 .small-label {
   font-size: 0.85rem;
@@ -69,7 +72,7 @@ a { color: #b4532a; }
 }
 .nav a { color: white; text-decoration: none; margin-left: 24px; }
 .nav a:hover { color: #f0b27a; }
-.nav .logo { font-family: 'Lora', serif; font-weight: 700; font-size: 1.2rem; margin: 0; }
+.nav .logo { font-family: 'Lora', serif; font-weight: 700; font-size: 1.3rem; margin: 0; color: white; }
 
 .hero {
   display: flex;
@@ -80,7 +83,8 @@ a { color: #b4532a; }
   min-height: 85vh;
   padding: 40px 20px;
 }
-.hero p { max-width: 600px; font-size: 1.2rem; }
+.hero p { max-width: 620px; font-size: 1.25rem; margin-bottom: 28px; }
+.hero .small-label { color: #f0b27a; margin-bottom: 12px; }
 
 .about {
   display: flex;
@@ -106,22 +110,27 @@ a { color: #b4532a; }
   width: 300px;
   height: 400px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 10px;
+  box-shadow: 12px 12px 0 #e2d6c4;
 }
 .card {
   width: calc(33.333% - 14px);   /* three per row */
   min-height: 180px;
   background: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 20px;
+  border-top: 4px solid #b4532a;
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .card ul { margin: 0; padding-left: 20px; }
+.card li::marker { color: #b4532a; }
+.card p { font-size: 0.98rem; }
 .gallery img {
   width: calc(50% - 8px);        /* two per row */
   height: 280px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ---------- Buttons ---------- */
@@ -144,7 +153,19 @@ a { color: #b4532a; }
 
 /* ---------- Timeline (school journey) ---------- */
 .timeline { border-left: 3px solid #b4532a; padding-left: 24px; }
-.timeline .entry { margin-bottom: 28px; }
+.timeline .entry { margin-bottom: 32px; position: relative; }
+.timeline .entry::before {
+  content: '';
+  position: absolute;
+  left: -35px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  background: #b4532a;
+  border: 3px solid #efe9df;
+  border-radius: 50%;
+}
+.timeline .entry p { margin-bottom: 4px; }
 .timeline .year { font-weight: 700; color: #b4532a; }
 
 /* ---------- Contact form ---------- */
